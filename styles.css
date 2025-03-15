@@ -207,6 +207,11 @@ body {
     text-align: center;
 }
 
+.life-content {
+    width: inherit;
+}
+
+
 /* 响应式设计 */
 @media (max-width: 480px) {
     .container {
