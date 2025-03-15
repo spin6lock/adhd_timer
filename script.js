@@ -22,6 +22,28 @@ document.addEventListener('DOMContentLoaded', function() {
     initCountdownMode();
     initYearMode();
     initLifeMode();
+    
+    // 添加自动更新定时器
+    setInterval(() => {
+        const activeTab = document.querySelector('.tab-btn.active');
+        if (activeTab) {
+            const mode = activeTab.getAttribute('data-mode');
+            switch(mode) {
+                case 'day-count':
+                    initDayCountMode();
+                    break;
+                case 'week':
+                    initWeekMode();
+                    break;
+                case 'year':
+                    initYearMode();
+                    break;
+                case 'life':
+                    updateLifeProgress();
+                    break;
+            }
+        }
+    }, 60000); // 每分钟更新一次
 });
 
 // 周度计数模式初始化
