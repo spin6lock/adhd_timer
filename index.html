@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHD时间进度条</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="timer-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-mode="day-count">月度</button>
+                <button class="tab-btn" data-mode="week">周度</button>
+                <button class="tab-btn" data-mode="countdown">倒计时</button>
+                <button class="tab-btn" data-mode="year">年份</button>
+                <button class="tab-btn" data-mode="life">人生</button>
+            </div>
+            
+            <div class="display-container">
+                <!-- 月度计数模式 -->
+                <div class="timer-display active" id="day-count-display">
+                    <div class="number">36</div>
+                    <div class="grid-container">
+                        <div class="grid"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="stats">
+                        <span class="current">36/90</span>
+                    </div>
+                </div>
+                
+                <!-- 周度计数模式 -->
+                <div class="timer-display" id="week-display">
+                    <div class="number">本周</div>
+                    <div class="grid-container">
+                        <div class="grid"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="stats">
+                        <span class="current">1/7</span>
+                    </div>
+                </div>
+                
+                <!-- 倒计时模式 -->
+                <div class="timer-display" id="countdown-display">
+                    <div class="number">25:00</div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <button class="start-btn">开始</button>
+                </div>
+                
+                <!-- 年份模式 -->
+                <div class="timer-display" id="year-display">
+                    <div class="number">2025</div>
+                    <div class="grid-container">
+                        <div class="grid"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="stats">
+                        <span class="current">74/365</span>
+                    </div>
+                </div>
+                
+                <!-- 人生模式 -->
+                <div class="timer-display" id="life-display">
+                    <div class="config-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="birthdate">出生日期：</label>
+                            <input type="date" id="birthdate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lifeExpectancy">预期寿命（岁）：</label>
+                            <input type="number" id="lifeExpectancy" min="1" max="120" value="80" required>
+                        </div>
+                        <button class="save-btn">保存</button>
+                    </div>
+                    <div class="life-content">
+                        <div class="life-header">人生进度</div>
+                        <div class="grid-container">
+                            <div class="grid"></div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="stats">
+                            <span class="current">已度过0年</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
