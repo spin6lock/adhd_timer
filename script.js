@@ -103,6 +103,60 @@ function initCountdownMode() {
     let remainingSeconds = totalSeconds;
     let isRunning = false;
     
+    // 创建时间滑动条
+    const sliderContainer = document.createElement('div');
+    sliderContainer.className = 'slider-container';
+    
+    const timeSlider = document.createElement('input');
+    timeSlider.type = 'range';
+    timeSlider.min = '1';
+    timeSlider.max = '60';
+    timeSlider.value = '25';
+    timeSlider.className = 'time-slider';
+    
+    const sliderValue = document.createElement('div');
+    sliderValue.className = 'slider-value';
+    sliderValue.textContent = '25分钟';
+    
+    // 创建刻度线容器
+    const ticksContainer = document.createElement('div');
+    ticksContainer.className = 'time-slider-ticks';
+    
+    // 添加刻度线和标签
+    for (let i = 0; i <= 60; i += 5) {
+        const tick = document.createElement('div');
+        tick.className = 'time-slider-tick';
+        
+        // 为主要刻度添加标签（每5分钟）
+        if (i % 5 === 0) {
+            const label = document.createElement('div');
+            label.className = 'time-slider-tick-label';
+            label.textContent = i === 0 ? '1' : i.toString();
+            tick.appendChild(label);
+        }
+        
+        ticksContainer.appendChild(tick);
+    }
+    
+    sliderContainer.appendChild(sliderValue);
+    sliderContainer.appendChild(timeSlider);
+    sliderContainer.appendChild(ticksContainer);
+    
+    // 将滑动条添加到倒计时显示区域
+    const countdownDisplay = document.querySelector('#countdown-display');
+    countdownDisplay.insertBefore(sliderContainer, startButton);
+    
+    // 滑动条事件监听
+    timeSlider.addEventListener('input', () => {
+        if (!isRunning) {
+            const minutes = parseInt(timeSlider.value);
+            totalSeconds = minutes * 60;
+            remainingSeconds = totalSeconds;
+            sliderValue.textContent = `${minutes}分钟`;
+            updateCountdown();
+        }
+    });
+    
     // 更新倒计时显示
     function updateCountdown() {
         const minutes = Math.floor(remainingSeconds / 60);
