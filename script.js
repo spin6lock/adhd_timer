@@ -212,9 +212,11 @@ function initCountdownMode() {
 function initYearMode() {
     const gridContainer = document.querySelector('#year-display .grid');
     const progressBar = document.querySelector('#year-display .progress');
-    
+    const numberEl = document.querySelector('#year-display .number');
+
     // 获取当前日期信息
     const now = new Date();
+    numberEl.textContent = now.getFullYear();
     const startOfYear = new Date(now.getFullYear(), 0, 1);
     const dayOfYear = Math.floor((now - startOfYear) / (24 * 60 * 60 * 1000)) + 1;
     const daysInYear = isLeapYear(now.getFullYear()) ? 366 : 365;
